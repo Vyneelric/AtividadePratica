@@ -2,6 +2,8 @@ create database db_sga_2025;
 
 use db_sga_2025;
 
+drop database db_sga_2025;
+
 create table tbl_usuario(
 	id 				INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	login 			VARCHAR(45) NOT NULL,
@@ -28,4 +30,6 @@ create table tbl_movimentacao(
     quantidade INT NOT NULL,
     data_movimentacao INT NOT NULL,
     id_livro INT NOT NULL
+    
+    
 );
