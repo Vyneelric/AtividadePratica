@@ -1,6 +1,5 @@
 //Import da biblioteca do prisma cliente para realizar as ações no BD
 const { PrismaClient } = require('@prisma/client')
-const { async } = require('effect/Stream')
 
 //Instância da classe do Prisma Client (cria um objeto)
 const prisma = new PrismaClient()
