@@ -31,5 +31,24 @@ create table tbl_movimentacao(
     data_movimentacao INT NOT NULL,
     id_livro INT NOT NULL
     
-    
+    CONSTRAINT FK_TIPO_MOVIMENTACAO_ 
+        FOREIGN KEY (id_movimentacao) REFERENCES tipo_movimentacao(id), 
+
 );
+
+INSERT INTO tbl_usuario (login, senha)
+VALUES
+('admin', '12345'),
+('joao.silva', 'senha123'),
+('maria.souza', 'abc123'),
+('pedro.lima', 'qwerty'),
+('ana.costa', '123456'),
+('carla.oliveira', 'senhaSegura!'),
+('lucas.pereira', 'teste2025'),
+('rafael.santos', 'minhasenha'),
+('bruna.mendes', 'pass1234'),
+('juliana.ferreira', 'segredo!');
+
+
+select * from tbl_usuario where login = '' and senha = '';
+select * from tbl_livro where titulo like "%19%";
