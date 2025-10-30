@@ -99,10 +99,27 @@ const selectByIDUsuario = async function(id) {
     }
 }
 
+const AutenticacaoUsuario = async function(login, senha) {
+    try {
+        let sql = `select * from tbl_usuario where login = ${login} and senha = ${senha};`
+
+
+        let result = await prisma.$queryRawUnsafe(sql)
+
+        if(result)
+            return result
+        else
+            return false
+    } catch (error) {
+        return false
+    }
+}
+
 module.exports = {
     insertNovoUsuario,
     updateNovoUsuario,
     deleteUsuario,
     selectAllUsuario,
-    selectByIDUsuario
+    selectByIDUsuario,
+    AutenticacaoUsuario
 }

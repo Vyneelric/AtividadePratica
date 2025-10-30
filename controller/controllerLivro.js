@@ -190,5 +190,6 @@ module.exports = {
     atualizarLivro,
     excluirLivro,
     listarLivros,
-    buscarLivro
+    buscarLivro,
+    buscaRapida
 }
