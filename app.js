@@ -14,6 +14,7 @@ const app = express()
 const controllerLivro = require('./controller/controllerLivro.js')
 const controllerUsuario = require('./controller/controllerUsuario.js')
 const controllerTipoMovimentacao = require('./controller/controllerTipoMovimentacao.js')
+const controllerMovimentacao = require('./controller/controllerMovimentacao.js')
 
 
 app.use((request, response, next)=>{
@@ -172,6 +173,47 @@ app.put('/v1/sga-2025/usuarios/:id', async function (request, response) {
 app.delete('/v1/sga-2025/usuarios/:id', async function (request, response) {
     let id = request.params.id
     let result = await controllerUsuario.excluirUsuario(id)
+    response.status(result.status_code)
+    response.json(result)
+})
+
+
+/***************************************************************
+ * ROTAS - MOVIMENTAÇÃO
+ ***************************************************************/
+app.get('/v1/sga-2025/movimentacoes', async function (request, response) {
+    let result = await controllerMovimentacao.listarMovimentacoes()
+    response.status(result.status_code)
+    response.json(result)
+})
+
+app.get('/v1/sga-2025/movimentacoes/:id', async function (request, response) {
+    let id = request.params.id
+    let result = await controllerMovimentacao.buscarMovimentacao(id)
+    response.status(result.status_code)
+    response.json(result)
+})
+
+app.post('/v1/sga-2025/movimentacoes', async function (request, response) {
+    let contentType = request.headers['content-type']
+    let dadosBody = request.body
+    let result = await controllerMovimentacao.inserirMovimentacao(dadosBody, contentType)
+    response.status(result.status_code)
+    response.json(result)
+})
+
+app.put('/v1/sga-2025/movimentacoes/:id', async function (request, response) {
+    let id = request.params.id
+    let contentType = request.headers['content-type']
+    let dadosBody = request.body
+    let result = await controllerMovimentacao.atualizarMovimentacao(id, dadosBody, contentType)
+    response.status(result.status_code)
+    response.json(result)
+})
+
+app.delete('/v1/sga-2025/movimentacoes/:id', async function (request, response) {
+    let id = request.params.id
+    let result = await controllerMovimentacao.excluirMovimentacao(id)
     response.status(result.status_code)
     response.json(result)
 })
