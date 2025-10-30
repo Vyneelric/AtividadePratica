@@ -1,4 +1,4 @@
-const tipoDAO = require('../model/DAO/tipo.js')
+const tipoDAO = require('../model/DAO/tipo_movimentacao.js')
 const message = require('../modulo/config.js')
 
 const inserirTipo = async function(tipo, contentType) {
