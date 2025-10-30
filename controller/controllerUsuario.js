@@ -151,15 +151,15 @@ const buscarUsuario = async function (id){
     }
 }
 
-const loginUsuario = async function (login, senha){
+const loginUsuario = async function (usuario){
     try {
-        if(login == '' || login == null || login == undefined ||
-           senha == '' || senha == null || senha == undefined){
+        if(usuario.login == '' || usuario.login == null || usuario.login == undefined ||
+           usuario.senha == '' || usuario.senha == null || usuario.senha == undefined){
             return message.ERROR_REQUIRE_FIELDS //400
         }else{
 
         let dadosUsuario = {}
-        let result = await usuarioDAO.AutenticacaoUsuario(login, senha)
+        let result = await usuarioDAO.AutenticacaoUsuario(usuario.login, usuario.senha)
 
         if(result != false || typeof(result) == 'object'){
             if(result.length > 0){
