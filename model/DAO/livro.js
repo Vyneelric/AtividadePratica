@@ -105,10 +105,27 @@ const selectByIDLivro = async function(id) {
     }
 }
 
+const buscaRapida = async function(busca) {
+    try {
+        let sql = `select * from tbl_livro where titulo like '%${busca}%';`
+
+
+        let result = await prisma.$queryRawUnsafe(sql)
+
+        if(result)
+            return result
+        else
+            return false
+    } catch (error) {
+        return false
+    }
+}
+
 module.exports = {
     insertNovoLivro,
     updateNovoLivro,
     deleteLivro,
     selectAllLivros,
-    selectByIDLivro
+    selectByIDLivro,
+    buscaRapida
 }

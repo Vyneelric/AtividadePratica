@@ -156,6 +156,35 @@ const buscarLivro = async function (id){
     }
 }
 
+const buscaRapida = async function (busca){
+    try {
+        if(busca == '' || busca == undefined || busca == null){
+            return message.ERROR_REQUIRE_FIELDS //400
+        }else{
+
+        let dadosLivro = {}
+        let result = await livroDAO.buscaRapida(busca)
+
+        if(result != false || typeof(result) == 'object'){
+            if(result.length > 0){
+
+                dadosLivro.status = true,
+                dadosLivro.status_code = 200,
+                dadosLivro.livro = result
+
+                return dadosLivro
+            }else{
+                return message.ERROR_NOT_FOUND //404
+            }
+        }else{
+            return message.ERROR_INTERNET_SERVER_MODEL //500
+        }
+    }
+    } catch (error) {
+        return message.ERROR_INTERNET_SERVER_CONTROLLER //500
+    }
+}
+
 module.exports = {
     inserirLivro,
     atualizarLivro,
